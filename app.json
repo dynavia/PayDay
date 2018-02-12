@@ -1,0 +1,25 @@
+{
+  "id": "15093d3f-fbc9-4e8e-a746-1da7caa174bb",
+  "name": "PayDay",
+  "publisher": "Default publisher",
+  "brief": "",
+  "description": "",
+  "version": "1.0.0.0",
+  "compatibilityId": "1.0.0.0",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "capabilities": [],
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "11.0.0.0",
+  "application": "11.0.0.0",
+  "features": "TranslationFile",
+  "idRange": {
+    "from": 50100,
+    "to": 50149
+  }
+ 
+}
