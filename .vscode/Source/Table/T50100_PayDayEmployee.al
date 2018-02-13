@@ -25,6 +25,11 @@ table 50100 "PayDay Employee"
         field(7;Title; Text[250]){}
         field(8;Active;Boolean){}
         field(9;"Job Percentage";Decimal){}
+        field(10;"Salary ID"; code[20])
+        {
+            TableRelation = "PayDay Salary";
+            ValidateTableRelation = true;
+        }
     }   
 
     keys

@@ -20,6 +20,10 @@ page 50100 "PayDay Employee Card"
                 field(Country;Country){}
                 field(Title;Title){}                
             }
+            group("Salary Information")
+            {
+                field("Salary Code";"Salary ID"){}
+            }
         }
     }
 
