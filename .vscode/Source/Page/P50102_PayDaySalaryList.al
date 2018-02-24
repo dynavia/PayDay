@@ -15,8 +15,8 @@ page 50102 "PayDay Salary List"
             {
                 field(ID;ID){}
                 field(Description;Description){}
-                field(Amount;Amount){}
-
+                field("Fixed Total Amount";"Fixed Total Amount"){}
+                field("Salary Type";"Salary Type"){}
             }
         }
         area(factboxes)

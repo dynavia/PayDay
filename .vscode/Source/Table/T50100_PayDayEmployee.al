@@ -24,12 +24,26 @@ table 50100 "PayDay Employee"
         }
         field(7;Title; Text[250]){}
         field(8;Active;Boolean){}
-        field(9;"Job Percentage";Decimal){}
+        field(9;"Job Percentage";Decimal){}  //Work Proportion
         field(10;"Salary ID"; code[20])
         {
             TableRelation = "PayDay Salary";
             ValidateTableRelation = true;
         }
+        field(11;"Personal Tax Credit"; code[20])
+        {
+            TableRelation = "PayDay Personal Tax Credit";
+            ValidateTableRelation = true;            
+        }
+        field(12; "Personal Tax Credit Proportion"; Decimal){}
+
+        field(13;"Additional Personal Tax Credit"; code[20])
+        {
+            TableRelation = "PayDay Personal Tax Credit";
+            ValidateTableRelation = true;            
+        }
+        field(14; "Additional Personal Tax Credit Proportion"; Decimal){}
+
     }   
 
     keys

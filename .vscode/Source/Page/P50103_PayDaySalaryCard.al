@@ -14,7 +14,11 @@ page 50103 "PayDay Salary Card"
             {
                 field(ID;ID){}
                 field(Description;Description){}
-                field(Amount;Amount){}
+                field("Salary Type";"Salary Type"){}
+                field("Fixed Total Amount";"Fixed Total Amount"){}
+                field("Rate per Hour(Daily)";"Rate per Hour(Daily)"){}
+                field("Rate per Hour(Extra)";"Rate per Hour(Extra)"){}
+                field("Rate per Hour(Overtime)";"Rate per Hour(Overtime)"){}
             }
         }
     }
