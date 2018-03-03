@@ -15,8 +15,11 @@ page 50102 "PayDay Salary List"
             {
                 field(ID;ID){}
                 field(Description;Description){}
-                field("Fixed Total Amount";"Fixed Total Amount"){}
                 field("Salary Type";"Salary Type"){}
+                field("Fixed Total Amount";"Fixed Total Amount"){}
+                field("Rate per Hour(Daily)";"Rate per Hour(Daily)"){}
+                field("Rate per Hour(Overtime)";"Rate per Hour(Overtime)"){}
+                field("Rate per Hour(Extra)";"Rate per Hour(Extra)"){}
             }
         }
         area(factboxes)

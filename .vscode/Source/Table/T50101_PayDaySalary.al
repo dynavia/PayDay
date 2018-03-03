@@ -1,5 +1,9 @@
 table 50101 "PayDay Salary"
 {
+    DataPerCompany = true;
+    LookupPageId = 50102;
+    DrillDownPageId = 50102;
+
     fields
     {
         field(1;ID;Code[20]){}
@@ -23,6 +27,10 @@ table 50101 "PayDay Salary"
         }
     }
     
+    fieldgroups{
+        fieldgroup(DropDown;ID,Description,"Salary Type","Fixed Total Amount","Rate per Hour(Daily)"){}
+    }
+
     var
         myInt : Integer;
 

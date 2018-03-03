@@ -3,6 +3,8 @@
 table 50103 "PayDay Personal Tax Credit"
 {
 
+    LookupPageId = 50104;
+
     fields
     {
         field(1;ID;Code[20]){}

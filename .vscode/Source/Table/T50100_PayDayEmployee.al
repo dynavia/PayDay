@@ -43,7 +43,6 @@ table 50100 "PayDay Employee"
             ValidateTableRelation = true;            
         }
         field(14; "Additional Personal Tax Credit Proportion"; Decimal){}
-
     }   
 
     keys
