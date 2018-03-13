@@ -1,5 +1,6 @@
 table 50102 "PayDay Pension"
 {
+    LookupPageId = 50105;
 
     fields
     {

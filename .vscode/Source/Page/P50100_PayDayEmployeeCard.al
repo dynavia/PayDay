@@ -10,6 +10,8 @@ page 50100 "PayDay Employee Card"
     {
         area(content)
         {
+            
+            // General Section
             group(General)
             {
                 field(ID;ID){
@@ -28,6 +30,8 @@ page 50100 "PayDay Employee Card"
                     BlankZero = true;
                 }
             }
+            
+            // Salary Information Section
             group("Salary Information")
             {
                 field("Salary Code";"Salary ID"){
@@ -47,7 +51,6 @@ page 50100 "PayDay Employee Card"
                 }
                 field("Fixed Total Amount";Salary."Fixed Total Amount"){
                     Editable = false;
-                    //Visible = FixedSalaryVisible;
                 }
                 field("Rate per Hour(Daily)";Salary."Rate per Hour(Daily)"){
                     Editable = false;
@@ -59,50 +62,71 @@ page 50100 "PayDay Employee Card"
                     Editable = false;
                 }
             }
+            
+            // Personal Tax Credit Section
             group("Personal Tax Credit "){
                 
-                //GridLayout = true;
                 group("GridLayout"){
                     Caption = '';
-                    group("GroupGrid3"){
+                    grid("GroupGrid1"){
                         Caption = '';
-                        grid("GroupGrid1"){
+                        
+                        group("1000")  {
+                            Caption = '';
                             field("Personal Tax Credit";"Personal Tax Credit"){
-                            trigger OnValidate();
-                            begin
-                                if not PersTaxCredit.get("Personal Tax Credit") then begin
-                                    clear(PersTaxCredit);
-                                    "Personal Tax Credit Proportion" := 0;
-                                    CalcPersTaxCredit := 0;
-                                end else begin
+                                Caption = 'PTC';
+                                trigger OnValidate();
+                                begin
+                                    if not PersTaxCredit.get("Personal Tax Credit") then begin
+                                        clear(PersTaxCredit);
+                                        "Personal Tax Credit Proportion" := 0;
+                                        CalcPersTaxCredit := 0;
+                                    end else begin
                                         "Personal Tax Credit Proportion" := 100;
-                                        CalcPersTaxCredit := PersTaxCredit.Amount * ("Personal Tax Credit Proportion" / 100);
+                                            CalcPersTaxCredit := PersTaxCredit.Amount * ("Personal Tax Credit Proportion" / 100);
                                     end;
-                            end;
+                                end;
                             }
+                        }
+                        group("1001"){
+                            Caption = '';
                             field(PersTaxCredit;PersTaxCredit.Description){
+                                Caption = '';
                                 Editable = false;
                             }
+                        }
+                        group("1002"){
+                            Caption = '';
                             field("Amount";PersTaxCredit.Amount){
                                 Editable = false;
                             }
+                        }
+                        group("1003"){
+                            Caption = '';
                             field("Personal Tax Credit Proportion";"Personal Tax Credit Proportion"){
+                                Caption = 'Proportion';
                                 BlankZero = true;
                                 trigger OnValidate();
                                 begin
                                     CalcPersTaxCredit := PersTaxCredit.Amount * ("Personal Tax Credit Proportion" / 100);    
                                 end;
                             }
+                        }
+                        group("1004"){
+                            Caption = '';
                             field(CalcPersTaxCredit;CalcPersTaxCredit){
+                                Caption = '';
                                 BlankZero = true;
                                 Editable = false;
                             }
                         }
                     }
-                    group("GroupGrid4"){
+                    grid("GroupGrid2"){
                         Caption = '';
-                        grid("GroupGrid2"){
+                        group("1005"){
+                            Caption = '';
                             field("Additional Personal Tax Credit";"Additional Personal Tax Credit"){
+                                Caption = 'Additional PTC';
                                 trigger OnValidate();
                                 begin
                                     if not AddPersTaxCredit.get("Personal Tax Credit") then begin
@@ -115,26 +139,88 @@ page 50100 "PayDay Employee Card"
                                     end;
                                 end;
                             }
+                        }
+                        group("1006"){
+                            Caption = '';
                             field(AddPersTaxCredit;AddPersTaxCredit.Description){
+                                Caption = '';
                                 Editable = false;
                             }
+                        }
+                        group("1007"){
+                            Caption = '';
                             field("Add. Amount";PersTaxCredit.Amount){
                                 Editable = false;
                             }
+                        }
+                        group("1008"){
+                            Caption = '';
                             field("Additional Personal Tax Credit Proportion";"Additional Personal Tax Credit Proportion"){
+                                Caption = 'Proportion';
                                 BlankZero = true;
                                 trigger OnValidate();
                                 begin
                                     CalcAddPersTaxCredit := AddPersTaxCredit.Amount * ("Additional Personal Tax Credit Proportion" / 100);  
                                 end;
                             }
-                            field(CalcAddPersTaxCredit;CalcAddPersTaxCredit){
+                        }
+                        group("1009"){
+                            Caption = '';
+                            field(CalcAddPersTaxCredit;CalcAddPersTaxCredit){                                    
+                                Caption = '';
                                 BlankZero = true;
                                 Editable = false;
                             }
                         }
                     }
                 }       
+            }
+            
+            // Pension Section
+            group("Pension"){
+                group("1010"){
+                    Caption = '';
+                    grid("1011"){
+                        Caption = '';
+                        group("1012"){
+                            Caption = '';
+                            field("Pension Fund ID";"Pension Fund ID"){
+                                trigger OnValidate();
+                                begin
+                                    Pension.get("Pension Fund ID");
+                                end;
+                            }
+                        }
+                        group("1016"){
+                            Caption = '';
+                            field("Description2";Pension.Description){
+                                Caption = '';
+                                Editable = false;
+                            }
+                        }
+                    }
+                    grid("1013"){
+                        Caption = '';
+                        group("1014"){
+                            Caption = '';
+                            field("Additional Pension Fund ID";"Additional Pension Fund ID"){
+                                trigger OnValidate();
+                                begin
+                                    AddPension.get("Additional Pension Fund ID");
+                                end;
+                            }
+                        }
+                        group("1015"){
+                            Caption = '';
+                            field("Description3";AddPension.Description){
+                                Caption = '';
+                                Editable = false;
+                            }
+                        }
+                    }
+                }
+
+                
             }
         }
     }
@@ -153,11 +239,16 @@ page 50100 "PayDay Employee Card"
     }
     
     var
+        // Records
         Salary : Record "PayDay Salary";
         PersTaxCredit : Record "PayDay Personal Tax Credit";
         AddPersTaxCredit : Record "PayDay Personal Tax Credit";
+        Pension : Record "PayDay Pension";
+        AddPension : Record "PayDay Pension";
+        // Other
         CalcPersTaxCredit : Decimal;
         CalcAddPersTaxCredit : Decimal;
+        
 
     trigger OnAfterGetRecord();
     begin
@@ -167,6 +258,10 @@ page 50100 "PayDay Employee Card"
             clear(PersTaxCredit);
         if not AddPersTaxCredit.Get("Additional Personal Tax Credit") then
             clear(AddPersTaxCredit); 
+        if not Pension.get("Pension Fund ID") then
+            clear(Pension);
+        if not AddPension.get("Additional Pension Fund ID") then
+            clear(AddPension);
         CalcPersTaxCredit := PersTaxCredit.Amount * ("Personal Tax Credit Proportion" / 100);
         CalcAddPersTaxCredit := AddPersTaxCredit.Amount * ("Additional Personal Tax Credit Proportion" / 100);  
     end;

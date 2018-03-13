@@ -8,6 +8,7 @@ table 50100 "PayDay Employee"
         {
             trigger OnValidate();
             var
+                //asdf : Record test
 
             begin                
                 // ná í nafn úr þjóðskrá jafnvel
@@ -43,6 +44,15 @@ table 50100 "PayDay Employee"
             ValidateTableRelation = true;            
         }
         field(14; "Additional Personal Tax Credit Proportion"; Decimal){}
+        field(15;"Pension Fund ID";code[20]){
+            TableRelation = "PayDay Pension";
+            ValidateTableRelation = true;
+        }
+        field(16;"Additional Pension Fund ID";code[20]){
+            TableRelation = "PayDay Pension";
+            ValidateTableRelation = true;
+            
+        }
     }   
 
     keys
